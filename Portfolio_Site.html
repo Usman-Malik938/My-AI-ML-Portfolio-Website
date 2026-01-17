@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Usman - AI/ML Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #a0aec0;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .profile-pic img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px;
+            border: 4px solid #667eea;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            animation: fadeInUp 1s ease 0.1s backwards;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* About Section */
+        .about-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-name {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .skill-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+            justify-items: center;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-video {
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-video iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .project-info p {
+            line-height: 1.6;
+        }
+
+        /* Reviews */
+        .reviews-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .reviewer {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #667eea;
+            min-width: 30px;
+            flex-shrink: 0;
+        }
+
+        .contact-item > div {
+            flex: 1;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: #667eea;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.05);
+        }
+
+        /* Calendly Section */
+        .calendar-wrapper {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calendar-wrapper:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.25);
+        }
+
+        .calendar-wrapper h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .calendar-wrapper p {
+            color: #a0aec0;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .calendar-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .calendly-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .calendly-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .profile-pic img {
+                width: 200px;
+                height: 200px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .calendly-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .project-video {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .profile-pic img {
+                width: 150px;
+                height: 150px;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .service-card,
+            .skill-item,
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+            }
+
+            .social-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Muhammad Usman</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="profile-pic">
+                <img src="my_profile_test.jpeg" alt="Muhammad Usman">
+            </div>
+            <h1>Muhammad Usman</h1>
+            <p>AI/ML Engineer | Video Pipeline Specialist | LLM Expert</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I am a passionate AI/ML engineer specializing in cutting-edge artificial intelligence solutions. With expertise in video pipelines, avatar creation using open-source models, RAG LLM chatbots, LangGraph, and Django-based AI-integrated applications, I help businesses leverage the power of AI to transform their operations.</p>
+                <br>
+                <p>My journey in AI has equipped me with deep knowledge in prompt engineering, machine learning model deployment, and creating intelligent conversational agents. I'm committed to delivering innovative solutions that drive real business value.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">My Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎥</div>
+                    <h3>Video Pipelines</h3>
+                    <p>End-to-end video processing pipelines using AI for automated editing, enhancement, and content generation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>Avatar Creation</h3>
+                    <p>Custom AI-powered avatars using open-source models for virtual assistants, digital humans, and interactive experiences.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3>RAG LLM Chatbots</h3>
+                    <p>Intelligent chatbots with Retrieval-Augmented Generation for accurate, context-aware conversations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔗</div>
+                    <h3>LangGraph Solutions</h3>
+                    <p>Complex AI workflows using LangGraph for multi-step reasoning and agent-based systems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Django AI Integration</h3>
+                    <p>Full-stack AI-integrated web applications built with Django for scalable enterprise solutions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✍️</div>
+                    <h3>Prompt Engineering</h3>
+                    <p>Expert prompt engineering services to optimize AI model outputs for your specific use cases.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-name">Python & Machine Learning</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">LangChain & LangGraph</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">RAG & Vector Databases</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Django & FastAPI</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 92%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Computer Vision & Video AI</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Prompt Engineering</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 98%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Portfolio Projects</h2>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-video">
+                        <iframe 
+                            width="100%" 
+                            height="200" 
+                            src="https://drive.google.com/file/d/1vJtZlqfhe7BoI6oKnjXhopsO1kHMpEfQ/preview" 
+                            frameborder="0" 
+                            allow="autoplay" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="project-info">
+                        <h3>AI Decision Making Conversational Agent</h3>
+                        <p>End-to-end Streamlit app deployed on AWS — AI conversational agent for decision-making.</p>
+                    </div>
+                </div>
+        
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-video">
+                        <iframe 
+                            width="100%" 
+                            height="200" 
+                            src="https://drive.google.com/file/d/17IZ4IHqScoAl2pUysmLQCRna1ZSun85W/preview" 
+                            frameborder="0" 
+                            allow="autoplay" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="project-info">
+                        <h3>Avatar Generation</h3>
+                        <p>AI Avatar creation using Wan 2.2 model with fine-tuned lip-syncing pipeline.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <div class="container">
+            <h2 class="section-title">Client Reviews</h2>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <div class="reviewer">Jose M</div>
+                    </div>
+                    <p class="review-text">"Working with Muhammad has been a pleasure. He has the knowledge, a good vision and an intelligence built to find solutions. He is also an explorer, which is not easy to find: someone ready and interested to jump into the "jungle" in order to find if there are "treasures" hidden that could help the project."</p>
+                    <small style="color: #a0aec0;">Project: Phase 1 - Avatar Creation for Multilingual Video Pipeline</small>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <div class="reviewer">Rasha</div>
+                    </div>
+                    <p class="review-text">"Muhammad is highly talented, detail-oriented, and consistently strives to find effective solutions to his clients' challenges."</p>
+                    <small style="color: #a0aec0;">Project: AI Manager Deployment on AWS</small>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <div class="reviewer">Abdulaziz</div>
+                    </div>
+                    <p class="review-text">"Fully Cooperative freelancer, respectful and will do everything to make sure he submits the project as required."</p>
+                    <small style="color: #a0aec0;">Project: Building a local AI RAG chatbot</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 2rem;">Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>Email</strong>
+                            m.usmandev99@gmail.com
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div>
+                            <strong>Phone</strong>
+                            +92 316 4217957
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong>Location</strong>
+                            Lahore, Punjab, Pakistan
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/Usman-Malik938" class="social-link" target="_blank">GitHub</a>
+                        <a href="https://www.linkedin.com/in/muhammad-usman-kidiary938/" class="social-link" target="_blank">LinkedIn</a>
+                        <a href="https://www.upwork.com/freelancers/~010140e8a3cf22fcb2" class="social-link" target="_blank">Upwork</a>
+                    </div>
+                </div>
+                
+                <!-- Calendly Button -->
+                <div class="calendar-wrapper">
+                    <div class="calendar-icon">📅</div>
+                    <h3>Book a Consultation</h3>
+                    <p>Let's discuss your AI/ML project needs</p>
+                    
+                    <a href="https://calendly.com/m-usmandev99/30min" 
+                       class="calendly-button" 
+                       target="_blank">
+                        Schedule a Call →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: rgba(0,0,0,0.3); padding: 2rem 0; text-align: center; margin-top: 4rem;">
+        <p>&copy; 2026 Muhammad Usman. All rights reserved.</p>
+    </footer>
+</body>
+</html>
