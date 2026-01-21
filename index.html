@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Usman - AI/ML Engineer</title>
@@ -24,7 +24,6 @@
             padding: 0 20px;
         }
 
-        /* Navigation */
         nav {
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
@@ -33,6 +32,11 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav:hover {
+            background: rgba(0, 0, 0, 0.4);
         }
 
         nav .container {
@@ -47,27 +51,62 @@
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         nav ul {
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         nav a:hover {
             color: #667eea;
+            transform: translateY(-2px);
         }
 
-        /* Hero Section */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+
         .hero {
-            padding: 100px 0;
+            padding: 60px 0 40px;
             text-align: center;
         }
 
@@ -83,25 +122,85 @@
         .hero p {
             font-size: 1.3rem;
             color: #a0aec0;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             animation: fadeInUp 1s ease 0.2s backwards;
         }
 
+        .profile-section {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
         .profile-pic img {
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            margin: 0 auto 20px;
+            margin: 0 auto;
             border: 4px solid #667eea;
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
             animation: fadeInUp 1s ease 0.1s backwards;
+            transition: all 0.4s ease;
         }
 
-        /* Section Styling */
+        .profile-pic img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .stats-badges {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            pointer-events: none;
+        }
+
+        .badge {
+            position: absolute;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            animation: float 3s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        .badge-1 {
+            top: 10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+        .badge-4 {
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+        .badge-2 {
+            bottom: 10%;
+            right: -10%;
+            animation-delay: 1s;
+        }
+
+        .badge-3 {
+            bottom: 10%;
+            left: -10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
         section {
-            padding: 80px 0;
+            padding: 60px 0;
         }
 
         .section-title {
@@ -111,18 +210,28 @@
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
         }
 
-        /* About Section */
+        .section-title:hover {
+            transform: scale(1.05);
+        }
+
         .about-content {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
         }
 
-        /* Services Grid */
+        .about-content:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -135,26 +244,61 @@
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
         }
 
         .service-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(5deg);
         }
 
         .service-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: #667eea;
+            transition: all 0.3s ease;
         }
 
-        /* Skills */
+        .service-card:hover h3 {
+            color: #f093fb;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: #a0aec0;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .tag {
+            background: rgba(102, 126, 234, 0.4);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -166,11 +310,23 @@
             padding: 1.5rem;
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
         }
 
         .skill-name {
             margin-bottom: 0.5rem;
             font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover .skill-name {
+            color: #667eea;
         }
 
         .skill-bar {
@@ -184,10 +340,13 @@
             background: linear-gradient(45deg, #667eea, #764ba2);
             height: 100%;
             border-radius: 5px;
-            transition: width 1s ease;
+            transition: all 1s ease;
         }
 
-        /* Projects */
+        .skill-item:hover .skill-progress {
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.8);
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -201,22 +360,24 @@
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             max-width: 500px;
             width: 100%;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
 
         .project-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            border-color: rgba(102, 126, 234, 0.5);
         }
 
         .project-video {
             width: 100%;
-            height: 200px;
-            background: rgba(0, 0, 0, 0.3);
+            height: 250px;
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -225,9 +386,59 @@
             overflow: hidden;
         }
 
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover .video-thumbnail {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .play-button::after {
+            content: '▶';
+            font-size: 24px;
+            margin-left: 3px;
+        }
+
+        .project-card:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.15);
+            box-shadow: 0 6px 30px rgba(102, 126, 234, 0.8);
+        }
+
         .project-video iframe {
             width: 100%;
             height: 100%;
+            display: none;
+        }
+
+        .project-video.playing iframe {
+            display: block;
+        }
+
+        .project-video.playing .video-thumbnail,
+        .project-video.playing .play-button {
+            display: none;
         }
 
         .project-info {
@@ -236,21 +447,60 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-info {
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .project-info h3 {
             margin-bottom: 0.5rem;
             color: #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-info h3 {
+            color: #f093fb;
         }
 
         .project-info p {
             line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        /* Reviews */
+        .project-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .keyword {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: #a0aec0;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .keyword {
+            background: rgba(102, 126, 234, 0.4);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
         .reviews-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
         }
 
         .review-card {
@@ -259,7 +509,15 @@
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 2rem;
+            margin: 0 1rem;
+            flex: 0 0 calc(100% - 2rem);
+            transition: all 0.4s ease;
+        }
+
+        .review-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
         .review-header {
@@ -272,6 +530,11 @@
         .stars {
             color: #ffd700;
             font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover .stars {
+            transform: scale(1.1);
         }
 
         .review-text {
@@ -283,9 +546,39 @@
         .reviewer {
             color: #667eea;
             font-weight: bold;
+            transition: all 0.3s ease;
         }
 
-        /* Contact */
+        .review-card:hover .reviewer {
+            color: #f093fb;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transform: scale(1.3);
+        }
+
+        .dot:hover {
+            background: rgba(102, 126, 234, 0.6);
+            transform: scale(1.2);
+        }
+
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -297,6 +590,13 @@
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .contact-info:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
         }
 
         .contact-item {
@@ -304,6 +604,11 @@
             align-items: flex-start;
             margin-bottom: 1.5rem;
             gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
         }
 
         .contact-icon {
@@ -311,6 +616,11 @@
             color: #667eea;
             min-width: 30px;
             flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.2) rotate(10deg);
         }
 
         .contact-item > div {
@@ -337,14 +647,15 @@
             border-radius: 25px;
             text-decoration: none;
             color: white;
-            transition: transform 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
         .social-link:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
         }
 
-        /* Calendly Section */
         .calendar-wrapper {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -352,7 +663,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 2rem;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -360,8 +671,9 @@
         }
 
         .calendar-wrapper:hover {
+            background: rgba(255, 255, 255, 0.08);
             transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.25);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
         }
 
         .calendar-wrapper h3 {
@@ -379,6 +691,11 @@
         .calendar-icon {
             font-size: 4rem;
             margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-wrapper:hover .calendar-icon {
+            transform: scale(1.15) rotate(5deg);
         }
 
         .calendly-button {
@@ -390,16 +707,15 @@
             border-radius: 30px;
             font-size: 1.1rem;
             font-weight: bold;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
         .calendly-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.7);
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -411,7 +727,6 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -420,6 +735,16 @@
             .profile-pic img {
                 width: 200px;
                 height: 200px;
+            }
+
+            .stats-badges {
+                width: 280px;
+                height: 280px;
+            }
+
+            .badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
             }
 
             nav ul {
@@ -457,7 +782,12 @@
             }
 
             .project-video {
-                height: 180px;
+                height: 200px;
+            }
+
+            .review-card {
+                margin: 0 0.5rem;
+                flex: 0 0 calc(100% - 1rem);
             }
         }
 
@@ -467,8 +797,18 @@
             }
 
             .profile-pic img {
-                width: 150px;
-                height: 150px;
+                width: 180px;
+                height: 180px;
+            }
+
+            .stats-badges {
+                width: 250px;
+                height: 250px;
+            }
+
+            .badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
             }
 
             nav ul {
@@ -477,7 +817,7 @@
             }
 
             section {
-                padding: 50px 0;
+                padding: 40px 0;
             }
 
             .service-card,
@@ -498,7 +838,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="container">
             <div class="logo">Muhammad Usman</div>
@@ -508,23 +847,29 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-button">Book a Call</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="profile-pic">
-                <img src="https://drive.google.com/thumbnail?id=15jkQBvbi-yI-K_8aRmRJmpZGRH2PPtNl&sz=w500" alt="Muhammad Usman">
+            <div class="profile-section">
+                <div class="profile-pic">
+                    <img src="https://drive.google.com/thumbnail?id=15jkQBvbi-yI-K_8aRmRJmpZGRH2PPtNl&sz=w500" alt="Muhammad Usman">
+                </div>
+                <div class="stats-badges">
+                    <div class="badge badge-1">3+ Years of experience</div>
+                    <div class="badge badge-2">20+ Projects</div>
+                    <div class="badge badge-3">100% JSS on Upwork</div>
+                    <div class="badge badge-4">Top Rated Freelancer</div>
+                </div>
             </div>
             <h1>Muhammad Usman</h1>
             <p>AI/ML Engineer | Video Pipeline Specialist | LLM Expert</p>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
@@ -536,46 +881,80 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services">
         <div class="container">
             <h2 class="section-title">My Services</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">🎥</div>
-                    <h3>Video Pipelines</h3>
-                    <p>End-to-end video processing pipelines using AI for automated editing, enhancement, and content generation.</p>
+                    <h3>AI Video Pipelines</h3>
+                    <p>End-to-end automated video processing with AI-powered editing, enhancement, and content generation pipelines.</p>
+                    <div class="service-tags">
+                        <span class="tag">FFmpeg</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">CUDA</span>
+                    </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🤖</div>
-                    <h3>Avatar Creation</h3>
-                    <p>Custom AI-powered avatars using open-source models for virtual assistants, digital humans, and interactive experiences.</p>
+                    <h3>AI Avatar Generation</h3>
+                    <p>Custom talking avatars using state-of-the-art models like Wav2Lip, with fine-tuned lip-sync and realistic animations.</p>
+                    <div class="service-tags">
+                        <span class="tag">Wav2Lip</span>
+                        <span class="tag">Face Recognition</span>
+                        <span class="tag">TTS</span>
+                        <span class="tag">Model Fine-tuning</span>
+                    </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">💬</div>
-                    <h3>RAG LLM Chatbots</h3>
-                    <p>Intelligent chatbots with Retrieval-Augmented Generation for accurate, context-aware conversations.</p>
+                    <h3>RAG & LLM Chatbots</h3>
+                    <p>Intelligent conversational AI with Retrieval-Augmented Generation for accurate, context-aware enterprise chatbots.</p>
+                    <div class="service-tags">
+                        <span class="tag">LangChain</span>
+                        <span class="tag">Vector DBs</span>
+                        <span class="tag">GPT-4</span>
+                        <span class="tag">Claude</span>
+                    </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🔗</div>
-                    <h3>LangGraph Solutions</h3>
-                    <p>Complex AI workflows using LangGraph for multi-step reasoning and agent-based systems.</p>
+                    <h3>LangGraph Workflows</h3>
+                    <p>Complex AI agent systems with multi-step reasoning, decision-making, and automated workflow orchestration.</p>
+                    <div class="service-tags">
+                        <span class="tag">LangGraph</span>
+                        <span class="tag">LangChain</span>
+                        <span class="tag">Agents</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👁️</div>
+                    <h3>Computer Vision & NLP</h3>
+                    <p>Advanced ML solutions for object detection, image segmentation, text analysis, and sentiment understanding.</p>
+                    <div class="service-tags">
+                        <span class="tag">YOLO</span>
+                        <span class="tag">Transformers</span>
+                        <span class="tag">BERT</span>
+                        <span class="tag">Scikit-learn</span>
+                    </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🌐</div>
                     <h3>Django AI Integration</h3>
-                    <p>Full-stack AI-integrated web applications built with Django for scalable enterprise solutions.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✍️</div>
-                    <h3>Prompt Engineering</h3>
-                    <p>Expert prompt engineering services to optimize AI model outputs for your specific use cases.</p>
+                    <p>Full-stack AI-integrated web applications with Django/FastAPI for scalable, production-ready ML solutions.</p>
+                    <div class="service-tags">
+                        <span class="tag">Django</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Docker</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills">
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
@@ -611,7 +990,7 @@
                     </div>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-name">Prompt Engineering</div>
+                    <div class="skill-name">Prompt Engineering & NLP</div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 98%"></div>
                     </div>
@@ -620,18 +999,18 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Portfolio Projects</h2>
             
             <div class="projects-grid">
-                <!-- Project 1 -->
                 <div class="project-card">
-                    <div class="project-video">
+                    <div class="project-video" onclick="playVideo(this)">
+                        <img src="https://via.placeholder.com/500x250/667eea/ffffff?text=AI+Agent+Demo" alt="AI Agent" class="video-thumbnail">
+                        <div class="play-button"></div>
                         <iframe 
                             width="100%" 
-                            height="200" 
+                            height="250" 
                             src="https://drive.google.com/file/d/1vJtZlqfhe7BoI6oKnjXhopsO1kHMpEfQ/preview" 
                             frameborder="0" 
                             allow="autoplay" 
@@ -639,17 +1018,25 @@
                         </iframe>
                     </div>
                     <div class="project-info">
-                        <h3>AI Decision Making Conversational Agent</h3>
-                        <p>End-to-end Streamlit app deployed on AWS — AI conversational agent for decision-making.</p>
+                        <h3>🤖 AI Decision-Making Agent</h3>
+                        <p>Production-ready Streamlit application deployed on AWS featuring an intelligent conversational AI agent for complex decision-making workflows.</p>
+                        <div class="project-keywords">
+                            <span class="keyword">Streamlit</span>
+                            <span class="keyword">AWS</span>
+                            <span class="keyword">LangChain</span>
+                            <span class="keyword">GPT-4</span>
+                            <span class="keyword">RAG</span>
+                        </div>
                     </div>
                 </div>
         
-                <!-- Project 2 -->
                 <div class="project-card">
-                    <div class="project-video">
+                    <div class="project-video" onclick="playVideo(this)">
+                        <img src="https://via.placeholder.com/500x250/764ba2/ffffff?text=Avatar+AI+Demo" alt="Avatar AI" class="video-thumbnail">
+                        <div class="play-button"></div>
                         <iframe 
                             width="100%" 
-                            height="200" 
+                            height="250" 
                             src="https://drive.google.com/file/d/17IZ4IHqScoAl2pUysmLQCRna1ZSun85W/preview" 
                             frameborder="0" 
                             allow="autoplay" 
@@ -657,56 +1044,67 @@
                         </iframe>
                     </div>
                     <div class="project-info">
-                        <h3>Avatar Generation</h3>
-                        <p>AI Avatar creation using Wan 2.2 model with fine-tuned lip-syncing pipeline.</p>
+                        <h3>🎭 Realistic AI Avatar Creator</h3>
+                        <p>Advanced talking avatar generation using Wav2Lip 2.2 model with custom fine-tuned lip-syncing pipeline for natural human-like speech animation.</p>
+                        <div class="project-keywords">
+                            <span class="keyword">Wav2Lip</span>
+                            <span class="keyword">PyTorch</span>
+                            <span class="keyword">Computer Vision</span>
+                            <span class="keyword">TTS</span>
+                            <span class="keyword">Fine-tuning</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reviews Section -->
     <section id="reviews">
         <div class="container">
             <h2 class="section-title">Client Reviews</h2>
             <div class="reviews-container">
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <div class="reviewer">Jose M</div>
+                <div class="reviews-slider" id="reviewsSlider">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="reviewer">Jose M</div>
+                        </div>
+                        <p class="review-text">"Working with Muhammad has been a pleasure. He has the knowledge, a good vision and an intelligence built to find solutions. He is also an explorer, which is not easy to find: someone ready and interested to jump into the 'jungle' in order to find if there are 'treasures' hidden that could help the project."</p>
+                        <small style="color: #a0aec0;">Project: Phase 1 - Avatar Creation for Multilingual Video Pipeline</small>
                     </div>
-                    <p class="review-text">"Working with Muhammad has been a pleasure. He has the knowledge, a good vision and an intelligence built to find solutions. He is also an explorer, which is not easy to find: someone ready and interested to jump into the "jungle" in order to find if there are "treasures" hidden that could help the project."</p>
-                    <small style="color: #a0aec0;">Project: Phase 1 - Avatar Creation for Multilingual Video Pipeline</small>
-                </div>
 
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <div class="reviewer">Rasha</div>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="reviewer">Rasha</div>
+                        </div>
+                        <p class="review-text">"Muhammad is highly talented, detail-oriented, and consistently strives to find effective solutions to his clients' challenges."</p>
+                        <small style="color: #a0aec0;">Project: AI Manager Deployment on AWS</small>
                     </div>
-                    <p class="review-text">"Muhammad is highly talented, detail-oriented, and consistently strives to find effective solutions to his clients' challenges."</p>
-                    <small style="color: #a0aec0;">Project: AI Manager Deployment on AWS</small>
-                </div>
 
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <div class="reviewer">Abdulaziz</div>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="reviewer">Abdulaziz</div>
+                        </div>
+                        <p class="review-text">"Fully Cooperative freelancer, respectful and will do everything to make sure he submits the project as required."</p>
+                        <small style="color: #a0aec0;">Project: Building a local AI RAG chatbot</small>
                     </div>
-                    <p class="review-text">"Fully Cooperative freelancer, respectful and will do everything to make sure he submits the project as required."</p>
-                    <small style="color: #a0aec0;">Project: Building a local AI RAG chatbot</small>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
             
             <div class="contact-grid">
-                <!-- Contact Info -->
                 <div class="contact-info">
                     <h3 style="margin-bottom: 2rem;">Contact Information</h3>
                     
@@ -741,7 +1139,6 @@
                     </div>
                 </div>
                 
-                <!-- Calendly Button -->
                 <div class="calendar-wrapper">
                     <div class="calendar-icon">📅</div>
                     <h3>Book a Consultation</h3>
@@ -760,5 +1157,38 @@
     <footer style="background: rgba(0,0,0,0.3); padding: 2rem 0; text-align: center; margin-top: 4rem;">
         <p>&copy; 2026 Muhammad Usman. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Reviews Slider
+        let currentSlide = 0;
+        const slider = document.getElementById('reviewsSlider');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = 3;
+
+        function goToSlide(n) {
+            currentSlide = n;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateDots();
+        }
+
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Play video on click
+        function playVideo(element) {
+            element.classList.add('playing');
+        }
+    </script>
 </body>
 </html>
