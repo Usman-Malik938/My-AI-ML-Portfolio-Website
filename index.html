@@ -38,6 +38,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#adobe-stock">AI Art</a></li>
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#contact" class="cta-button">Book a Call</a></li>
             </ul>
@@ -251,6 +252,77 @@
         </div>
     </section>
 
+    <!-- Adobe Stock Portfolio Section -->
+    <section id="adobe-stock">
+        <div class="container">
+            <h2 class="section-title reveal">AI Art & Prompt Engineering</h2>
+            <div class="adobe-stock-grid">
+                <!-- Asset 1 -->
+                <div class="stock-card reveal reveal-delay-1">
+                    <div class="stock-img-container">
+                        <img src="./adobe_stock_1.png" alt="Futuristic Quantum Core Lab" class="stock-img">
+                        <div class="prompt-overlay">
+                            <span class="prompt-title">Prompt Formula</span>
+                            <p class="prompt-formula">"Futuristic clean laboratory with glowing quantum computer core. Sleek 3D rendering style, cinematic lighting, neon blue and gold accents, highly detailed, commercial stock photo style."</p>
+                        </div>
+                    </div>
+                    <div class="stock-info">
+                        <span class="stock-sales-tag">Top Selling Asset</span>
+                        <h3>Quantum Core Lab</h3>
+                        <p>High-demand futuristic laboratory concepts designed for tech and corporate buyers, proving prompt optimization for commercial marketability.</p>
+                        <a href="https://stock.adobe.com/contributor/212103995/Muhammad" target="_blank" class="stock-cta-link">
+                            View on Adobe Stock <span>→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Asset 2 -->
+                <div class="stock-card reveal reveal-delay-2">
+                    <div class="stock-img-container">
+                        <img src="./adobe_stock_2.png" alt="Glowing Neural network structure" class="stock-img">
+                        <div class="prompt-overlay">
+                            <span class="prompt-title">Prompt Formula</span>
+                            <p class="prompt-formula">"Macro photorealistic close-up of organic glass fibers glowing with pink and purple light, creating a neural network structure. Ultra-detailed, abstract digital art, 8k resolution, stock photo style."</p>
+                        </div>
+                    </div>
+                    <div class="stock-info">
+                        <span class="stock-sales-tag">Highly Downloaded</span>
+                        <h3>Neural Fiber Networks</h3>
+                        <p>Abstract biological-inspired microscale neural net concepts optimized for scientific publications, journals, and abstract AI tech marketing materials.</p>
+                        <a href="https://stock.adobe.com/contributor/212103995/Muhammad" target="_blank" class="stock-cta-link">
+                            View on Adobe Stock <span>→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Asset 3 -->
+                <div class="stock-card reveal reveal-delay-3">
+                    <div class="stock-img-container">
+                        <img src="./adobe_stock_3.png" alt="Iridescent glass elements and soft gradients" class="stock-img">
+                        <div class="prompt-overlay">
+                            <span class="prompt-title">Prompt Formula</span>
+                            <p class="prompt-formula">"Minimalist abstract 3D shape composition with iridescent glass elements, pastel gradients, and soft volumetric lighting. Clean studio background, premium aesthetic, commercial asset style."</p>
+                        </div>
+                    </div>
+                    <div class="stock-info">
+                        <span class="stock-sales-tag">Trending Graphic</span>
+                        <h3>Iridescent Glass Art</h3>
+                        <p>Premium 3D minimalist shapes designed for web graphics and landing page backdrops, utilizing complex raytracing simulation styles for commercial buyers.</p>
+                        <a href="https://stock.adobe.com/contributor/212103995/Muhammad" target="_blank" class="stock-cta-link">
+                            View on Adobe Stock <span>→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="adobe-stock-cta-wrapper reveal">
+                <a href="https://stock.adobe.com/contributor/212103995/Muhammad" target="_blank" class="adobe-btn">
+                    Visit My Full Adobe Stock Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section id="reviews">
         <div class="container">
             <h2 class="section-title reveal">Client Reviews</h2>
@@ -258,7 +330,7 @@
                 <div class="reviews-slider" id="reviewsSlider">
                     <div class="review-card">
                         <div class="review-header">
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="stars">⭐⭐⭐⭐&nbsp;</div>
                             <div class="reviewer">Jose M</div>
                         </div>
                         <p class="review-text">"Working with Muhammad has been a pleasure. He has the knowledge, a good vision and an intelligence built to find solutions. He is also an explorer, which is not easy to find: someone ready and interested to jump into the 'jungle' in order to find if there are 'treasures' hidden that could help the project."</p>
@@ -352,6 +424,44 @@
             <p>&copy; 2026 Muhammad Usman. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Floating AI Chatbot Widget -->
+    <div class="chatbot-widget">
+        <button class="chatbot-btn" id="chatbotBtn" aria-label="Open AI Assistant Chatbot">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+            </svg>
+        </button>
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-header">
+                <div class="chatbot-header-info">
+                    <div class="chatbot-avatar">🤖</div>
+                    <div>
+                        <div class="chatbot-name">Usman's AI Bot</div>
+                        <div class="chatbot-status">Online</div>
+                    </div>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Close Chatbot">&times;</button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <!-- Messages will be dynamically loaded here by script.js -->
+            </div>
+            <div class="chatbot-quick-replies">
+                <span class="reply-pill" onclick="handleQuickReply('Show Projects 🤖')">Projects 🤖</span>
+                <span class="reply-pill" onclick="handleQuickReply('Tell me your Skills 📊')">Skills 📊</span>
+                <span class="reply-pill" onclick="handleQuickReply('Adobe Stock 🎨')">Adobe Stock 🎨</span>
+                <span class="reply-pill" onclick="handleQuickReply('How to Book a Call? 📅')">Book a Call 📅</span>
+            </div>
+            <form class="chatbot-input-form" id="chatbotForm">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask me something..." aria-label="Chat input message">
+                <button type="submit" class="chatbot-send" aria-label="Send message">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="./script.js" defer></script>
