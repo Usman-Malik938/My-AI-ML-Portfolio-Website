@@ -364,5 +364,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         appendBotMessage(reply);
     }
+
+    // Custom Video Controls Handlers
+    window.toggleMute = (event, btn) => {
+        event.stopPropagation();
+        const video = btn.closest('.project-video').querySelector('.project-video-element');
+        if (video) {
+            video.muted = !video.muted;
+            if (video.muted) {
+                btn.innerHTML = '🔊 Unmute';
+                btn.classList.remove('unmuted');
+            } else {
+                btn.innerHTML = '🔇 Mute';
+                btn.classList.add('unmuted');
+            }
+        }
+    };
+
+    window.toggleFullscreen = (event, btn) => {
+        event.stopPropagation();
+        const video = btn.closest('.project-video').querySelector('.project-video-element');
+        if (video) {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { /* Safari */
+                video.webkitRequestFullscreen();
+            } else if (video.mozRequestFullScreen) { /* Firefox */
+                video.mozRequestFullScreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        }
+    };
 });
 
