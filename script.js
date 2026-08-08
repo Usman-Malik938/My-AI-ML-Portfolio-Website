@@ -105,20 +105,57 @@ document.addEventListener('DOMContentLoaded', () => {
         startAutoSlide();
     }
 
-    // 5. Play Video on Click (Autoplay integration)
-    window.playVideo = (element) => {
-        element.classList.add('playing');
-        
-        // Find iframe inside and try to append autoplay query parameter if it exists
-        const iframe = element.querySelector('iframe');
-        if (iframe) {
-            let src = iframe.getAttribute('src');
-            if (src && !src.includes('autoplay=1')) {
-                src += (src.includes('?') ? '&' : '?') + 'autoplay=1';
-                iframe.setAttribute('src', src);
-            }
+    // 5. Smart Project Video Autoplay (Hover to Play, Pause on Mouseleave/Scroll)
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        const video = card.querySelector('.project-video-element');
+        if (video) {
+            // Hover to play
+            card.addEventListener('mouseenter', () => {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log('Video autoplay prevented:', error);
+                    });
+                }
+            });
+
+            // Mouse leave to pause
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+            });
+
+            // Click to toggle play/pause (for mobile compatibility)
+            card.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            });
         }
+    });
+
+    // Intersection Observer to automatically pause videos when scrolled out of view
+    const videoObserverOptions = {
+        root: null,
+        threshold: 0.3 // Trigger when less than 30% of the video is visible in the viewport
     };
+
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            if (!entry.isIntersecting && !video.paused) {
+                video.pause();
+            }
+        });
+    }, videoObserverOptions);
+
+    const projectVideos = document.querySelectorAll('.project-video-element');
+    projectVideos.forEach(video => {
+        videoObserver.observe(video);
+    });
 
     // 6. Smooth Scroll for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -176,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setTimeout(() => {
             removeTypingIndicator();
-            appendBotMessage("Hi there! 👋 I'm a custom conversational AI agent built by Usman using **Gemini 1.5 Flash** and **Vercel Serverless Functions**.<br><br>Ask me anything about his AI/ML projects, skills, stock art, or how to get in touch!");
+            appendBotMessage("Hi there! 👋 I'm a custom conversational AI agent built by Usman, running on his fine-tuned LLM inference pipeline.<br><br>Ask me anything about his AI/ML projects, skills, stock art, or how to get in touch!");
         }, 1000);
     }
 
@@ -320,13 +357,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let reply = "";
 
         if (text.includes('project') || text.includes('portfolio') || text.includes('work')) {
-            reply = "Usman has built advanced AI/ML systems. Two key projects are:<br><br>🤖 **AI Decision-Making Agent**: AWS-deployed RAG workflow built with LangChain.<br><br>🎭 **Realistic AI Avatar Creator**: Lip-sync pipeline using Wav2Lip models.<br><br>Which would you like to explore?";
-        } else if (text.includes('avatar') || text.includes('wav2lip') || text.includes('lip')) {
-            reply = "The **Realistic AI Avatar Creator** uses Wav2Lip 2.2 to synchronize speaking audio with video avatars. Usman optimized the lip sync and expression pipelines for multilingual output in commercial video editing.";
+            reply = "Usman has built advanced AI/ML systems. Two key projects are:<br><br>🤖 **AI Decision-Making Agent**: AWS-deployed RAG workflow built with LangChain.<br><br>🎭 **Realistic AI Avatar Creator**: Custom video generation pipeline built with Wan 2.0 models.<br><br>Which would you like to explore?";
+        } else if (text.includes('avatar') || text.includes('wan') || text.includes('video') || text.includes('digital human')) {
+            reply = "The **Realistic AI Avatar Creator** runs a custom **Wan 2.0** inference pipeline to generate highly realistic digital human expressions and lip-sync. Usman optimized it for photorealistic output and fast processing speeds.";
         } else if (text.includes('agent') || text.includes('langchain') || text.includes('langgraph') || text.includes('decision')) {
             reply = "The **AI Decision-Making Agent** leverages GPT-4, LangChain, and vector databases for Retrieval-Augmented Generation (RAG). Deployed on AWS with a Streamlit interface, it automates complex reasoning workflows.";
         } else if (text.includes('skills') || text.includes('python') || text.includes('tech') || text.includes('experience')) {
-            reply = "Usman's core technical skills include:<br>• **AI/Agents**: LangChain, LangGraph, RAG<br>• **Libraries**: PyTorch, OpenCV, Transformers<br>• **Full Stack**: Django, FastAPI, PostgreSQL, Docker<br>• **Specialties**: Video AI, NLP, AWS deployment";
+            reply = "Usman's core technical skills include:<br>• **AI/Agents**: LangChain, LangGraph, RAG<br>• **Libraries**: PyTorch, OpenCV, Transformers<br>• **Full Stack**: Django, FastAPI, PostgreSQL, Docker<br>• **Specialties**: Video AI (Wan 2.0), NLP, AWS deployment";
         } else if (text.includes('contact') || text.includes('hire') || text.includes('call') || text.includes('email') || text.includes('calendly')) {
             reply = "You can easily connect with Usman:<br>• 📧 [m.usmandev99@gmail.com](mailto:m.usmandev99@gmail.com)<br>• 📱 +92 316 4217957<br>• 📅 Book directly on [Calendly](https://calendly.com/m-usmandev99/30min)";
         } else if (text.includes('adobe') || text.includes('stock') || text.includes('art') || text.includes('prompt')) {
