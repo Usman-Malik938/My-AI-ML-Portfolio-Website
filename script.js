@@ -105,56 +105,54 @@ document.addEventListener('DOMContentLoaded', () => {
         startAutoSlide();
     }
 
-    // 5. Smart Project Video Autoplay (Hover to Play, Pause on Mouseleave/Scroll)
-    const projectCards = document.querySelectorAll('.project-card');
+    // 5. Smart Project Video Autoplay (Autoplay when in viewport, pause when out)
+    const projectVideos = document.querySelectorAll('.project-video-element');
     
-    projectCards.forEach(card => {
-        const video = card.querySelector('.project-video-element');
-        if (video) {
-            // Hover to play
-            card.addEventListener('mouseenter', () => {
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.log('Video autoplay prevented:', error);
-                    });
-                }
-            });
-
-            // Mouse leave to pause
-            card.addEventListener('mouseleave', () => {
-                video.pause();
-            });
-
-            // Click to toggle play/pause (for mobile compatibility)
-            card.addEventListener('click', () => {
-                if (video.paused) {
-                    video.play();
-                } else {
-                    video.pause();
-                }
-            });
-        }
-    });
-
-    // Intersection Observer to automatically pause videos when scrolled out of view
     const videoObserverOptions = {
         root: null,
-        threshold: 0.3 // Trigger when less than 30% of the video is visible in the viewport
+        threshold: 0.5 // Play when 50% of the video is visible
     };
 
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const video = entry.target;
-            if (!entry.isIntersecting && !video.paused) {
+            if (entry.isIntersecting) {
+                // Autoplay when scrolled onto screen
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log('Video autoplay on scroll prevented:', error);
+                    });
+                }
+            } else {
+                // Pause when scrolled off screen
                 video.pause();
             }
         });
     }, videoObserverOptions);
 
-    const projectVideos = document.querySelectorAll('.project-video-element');
     projectVideos.forEach(video => {
         videoObserver.observe(video);
+        
+        const card = video.closest('.project-card');
+        if (card) {
+            // Mouseenter ensures it plays if hover interaction is detected
+            card.addEventListener('mouseenter', () => {
+                if (video.paused) {
+                    video.play().catch(() => {});
+                }
+            });
+
+            // Click to toggle play/pause
+            card.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' || e.target.closest('.keyword')) return;
+                if (video.paused) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            });
+        }
     });
 
     // 6. Smooth Scroll for Anchor Links
