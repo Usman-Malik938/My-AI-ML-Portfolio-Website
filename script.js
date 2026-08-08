@@ -142,16 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     video.play().catch(() => {});
                 }
             });
-
-            // Click to toggle play/pause
-            card.addEventListener('click', (e) => {
-                if (e.target.tagName === 'A' || e.target.closest('.keyword')) return;
-                if (video.paused) {
-                    video.play().catch(() => {});
-                } else {
-                    video.pause();
-                }
-            });
         }
     });
 
