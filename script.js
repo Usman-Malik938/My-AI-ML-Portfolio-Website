@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setTimeout(() => {
             removeTypingIndicator();
-            appendBotMessage("Hi there! 👋 I'm Usman's virtual assistant. Ask me anything about his AI/ML projects, skills, or how we can work together!");
+            appendBotMessage("Hi there! 👋 I'm a custom conversational AI agent built by Usman using **Gemini 1.5 Flash** and **Vercel Serverless Functions**.<br><br>Ask me anything about his AI/ML projects, skills, stock art, or how to get in touch!");
         }, 1000);
     }
 
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function appendBotMessage(htmlContent) {
         const msgDiv = document.createElement('div');
         msgDiv.className = 'chat-msg bot';
-        msgDiv.innerHTML = htmlContent;
+        msgDiv.innerHTML = formatMarkdown(htmlContent);
         chatbotMessages.appendChild(msgDiv);
         scrollToBottom();
     }
@@ -243,40 +243,101 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Quick Replies Click Handler
     window.handleQuickReply = (text) => {
+        // Strip emoji before sending to query parser if desired, or send as is
         appendUserMessage(text);
         handleBotResponse(text);
     };
 
-    // Bot Response Logic (Keyword Matching engine)
-    function handleBotResponse(userText) {
-        showTypingIndicator();
-        const text = userText.toLowerCase();
+    // Helper to format basic Markdown to HTML (bold and links)
+    function formatMarkdown(text) {
+        if (!text) return "";
+        // Convert **bold** to <strong>bold</strong>
+        let formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Convert [text](url) to styled anchor links
+        formatted = formatted.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color:#f093fb; text-decoration:underline;">$1</a>');
+        // Convert newlines to html line breaks (if not already handled)
+        if (!formatted.includes('<br>')) {
+            formatted = formatted.replace(/\n/g, '<br>');
+        }
+        return formatted;
+    }
 
+    // Bot Response Handler (Queries serverless Gemini endpoint with fallback)
+    async function handleBotResponse(userText) {
+        showTypingIndicator();
+
+        // Build simple context array from last 6 visible messages (ignoring typing indicator)
+        const chatHistory = [];
+        const msgElements = chatbotMessages.querySelectorAll('.chat-msg:not(.typing)');
+        const maxContext = 6;
+        const startIndex = Math.max(0, msgElements.length - maxContext);
+        
+        for (let i = startIndex; i < msgElements.length; i++) {
+            const el = msgElements[i];
+            const isUser = el.classList.contains('user');
+            chatHistory.push({
+                role: isUser ? 'user' : 'model',
+                text: el.innerText
+            });
+        }
+
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: userText,
+                    history: chatHistory.slice(0, -1) // Exclude the current user message we just appended
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Serverless function failed or API key not set');
+            }
+
+            const data = await response.json();
+            if (data.reply) {
+                removeTypingIndicator();
+                appendBotMessage(data.reply);
+                return;
+            }
+        } catch (error) {
+            console.warn('API connection failed, falling back to local engine:', error.message);
+        }
+
+        // Graceful Local Fallback Engine if Backend API is offline
+        setTimeout(() => {
+            removeTypingIndicator();
+            handleLocalFallback(userText);
+        }, 1000);
+    }
+
+    // Local Matching Fallback Engine
+    function handleLocalFallback(userText) {
+        const text = userText.toLowerCase();
         let reply = "";
 
         if (text.includes('project') || text.includes('portfolio') || text.includes('work')) {
-            reply = "Usman has built advanced AI/ML systems. Two key projects are:<br><br>🤖 <strong>AI Decision-Making Agent</strong>: AWS-deployed RAG workflow built with LangChain.<br><br>🎭 <strong>Realistic AI Avatar Creator</strong>: Lip-sync pipeline using Wav2Lip models.<br><br>Which would you like to explore?";
+            reply = "Usman has built advanced AI/ML systems. Two key projects are:<br><br>🤖 **AI Decision-Making Agent**: AWS-deployed RAG workflow built with LangChain.<br><br>🎭 **Realistic AI Avatar Creator**: Lip-sync pipeline using Wav2Lip models.<br><br>Which would you like to explore?";
         } else if (text.includes('avatar') || text.includes('wav2lip') || text.includes('lip')) {
-            reply = "The <strong>Realistic AI Avatar Creator</strong> uses Wav2Lip 2.2 to synchronize speaking audio with video avatars. Usman optimized the lip sync and expression pipelines for multilingual output in commercial video editing.";
+            reply = "The **Realistic AI Avatar Creator** uses Wav2Lip 2.2 to synchronize speaking audio with video avatars. Usman optimized the lip sync and expression pipelines for multilingual output in commercial video editing.";
         } else if (text.includes('agent') || text.includes('langchain') || text.includes('langgraph') || text.includes('decision')) {
-            reply = "The <strong>AI Decision-Making Agent</strong> leverages GPT-4, LangChain, and vector databases for Retrieval-Augmented Generation (RAG). Deployed on AWS with a Streamlit interface, it automates complex reasoning workflows.";
+            reply = "The **AI Decision-Making Agent** leverages GPT-4, LangChain, and vector databases for Retrieval-Augmented Generation (RAG). Deployed on AWS with a Streamlit interface, it automates complex reasoning workflows.";
         } else if (text.includes('skills') || text.includes('python') || text.includes('tech') || text.includes('experience')) {
-            reply = "Usman's core technical skills include:<br>• <strong>AI/Agents</strong>: LangChain, LangGraph, RAG<br>• <strong>Libraries</strong>: PyTorch, OpenCV, Transformers<br>• <strong>Full Stack</strong>: Django, FastAPI, PostgreSQL, Docker<br>• <strong>Specialties</strong>: Video AI, NLP, AWS deployment";
+            reply = "Usman's core technical skills include:<br>• **AI/Agents**: LangChain, LangGraph, RAG<br>• **Libraries**: PyTorch, OpenCV, Transformers<br>• **Full Stack**: Django, FastAPI, PostgreSQL, Docker<br>• **Specialties**: Video AI, NLP, AWS deployment";
         } else if (text.includes('contact') || text.includes('hire') || text.includes('call') || text.includes('email') || text.includes('calendly')) {
-            reply = "You can easily connect with Usman:<br>• 📧 <a href='mailto:m.usmandev99@gmail.com' style='color:#f093fb;'>m.usmandev99@gmail.com</a><br>• 📱 +92 316 4217957<br>• 📅 Book directly on <a href='https://calendly.com/m-usmandev99/30min' target='_blank' style='color:#f093fb; text-decoration:underline;'>Calendly</a>";
+            reply = "You can easily connect with Usman:<br>• 📧 [m.usmandev99@gmail.com](mailto:m.usmandev99@gmail.com)<br>• 📱 +92 316 4217957<br>• 📅 Book directly on [Calendly](https://calendly.com/m-usmandev99/30min)";
         } else if (text.includes('adobe') || text.includes('stock') || text.includes('art') || text.includes('prompt')) {
-            reply = "Usman has a successful digital assets portfolio on **Adobe Stock**, utilizing advanced prompt engineering to design high-demand, commercial AI graphics. You can view his featured works in the 'AI Art' section of this page, or visit his <a href='https://stock.adobe.com/contributor/212103995/Muhammad' target='_blank' style='color:#f093fb; text-decoration:underline;'>Adobe Stock Contributor Page</a>.";
+            reply = "Usman has a successful digital assets portfolio on **Adobe Stock**, utilizing advanced prompt engineering to design high-demand, commercial AI graphics. You can view his featured works in the 'AI Art' section of this page, or visit his [Adobe Stock Contributor Page](https://stock.adobe.com/contributor/212103995/Muhammad).";
         } else if (text.includes('hi') || text.includes('hello') || text.includes('hey') || text.includes('yo')) {
             reply = "Hello! 👋 How can I help you today? Feel free to ask about Usman's **projects**, **skills**, **Adobe Stock** art, or **how to book a call**.";
         } else {
             reply = "Interesting question! Usman specializes in AI agents, video pipelines, RAG, and Django. Would you like to know more about his **Projects**, **Skills**, **Adobe Stock**, or **Contact** details?";
         }
 
-        // Simulate typing delay
-        setTimeout(() => {
-            removeTypingIndicator();
-            appendBotMessage(reply);
-        }, 1200);
+        appendBotMessage(reply);
     }
 });
 

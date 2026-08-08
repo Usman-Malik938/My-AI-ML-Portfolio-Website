@@ -410,6 +410,10 @@ section {
     transition: width 1.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+.skill-item.visible .skill-progress {
+    width: var(--progress-width) !important;
+}
+
 .skill-item:hover .skill-progress {
     box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
 }
